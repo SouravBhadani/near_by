@@ -1,0 +1,417 @@
+  [1m[36mSQL (36.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (347.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (255.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateLocations (20110704040959)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "address" varchar(255), "latitude" float, "longitude" float, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110704040959')
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("locations")
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from service at /home/agami-ip31/.rvm/rubies/ruby-1.9.3-p551/lib/ruby/1.9.1/webrick/httpserver.rb:138)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-27 00:47:59 +0530
+
+ActionController::RoutingError (No route matches "/"):
+  
+
+Rendered /home/agami-ip31/.rvm/gems/ruby-1.9.3-p551@1stspade/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/location" for 127.0.0.1 at 2015-07-27 00:48:13 +0530
+
+ActionController::RoutingError (No route matches "/location"):
+  
+
+Rendered /home/agami-ip31/.rvm/gems/ruby-1.9.3-p551@1stspade/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/location" for 127.0.0.1 at 2015-07-27 00:48:54 +0530
+
+ActionController::RoutingError (No route matches "/location"):
+  
+
+Rendered /home/agami-ip31/.rvm/gems/ruby-1.9.3-p551@1stspade/gems/actionpack-3.0.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-07-27 00:48:59 +0530
+  Processing by LocationsController#index as HTML
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT "locations".* FROM "locations"[0m
+Rendered locations/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 197ms (Views: 84.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=new+delhi" for 127.0.0.1 at 2015-07-27 00:49:08 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"new delhi"}
+  [1m[35mLocation Load (23.6ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6139391 AND longitude >= 77.2090212) THEN 45.0 WHEN (latitude < 28.6139391 AND longitude >= 77.2090212) THEN 135.0 WHEN (latitude < 28.6139391 AND longitude < 77.2090212) THEN 225.0 WHEN (latitude >= 28.6139391 AND longitude < 77.2090212) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 27.89028018444576 AND 29.33759801555424 AND longitude BETWEEN 76.38468296367017 AND 78.03335943632982) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475)
+Rendered locations/index.html.erb within layouts/application (31.6ms)
+Completed 200 OK in 1087ms (Views: 12.2ms | ActiveRecord: 23.6ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=new+delhi" for 127.0.0.1 at 2015-07-27 00:49:13 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"new delhi"}
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6139391 AND longitude >= 77.2090212) THEN 45.0 WHEN (latitude < 28.6139391 AND longitude >= 77.2090212) THEN 135.0 WHEN (latitude < 28.6139391 AND longitude < 77.2090212) THEN 225.0 WHEN (latitude >= 28.6139391 AND longitude < 77.2090212) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 27.89028018444576 AND 29.33759801555424 AND longitude BETWEEN 76.38468296367017 AND 78.03335943632982) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475)[0m
+Rendered locations/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 294ms (Views: 8.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:49:16 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (156.1ms)
+Rendered locations/new.html.erb within layouts/application (179.6ms)
+Completed 200 OK in 216ms (Views: 205.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:49:33 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"new delhi", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[35mSQL (0.4ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (85.8ms)[0m  [1mINSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('new delhi', 28.6139391, 77.2090212, '2015-07-26 19:19:34.152208', '2015-07-26 19:19:34.152208')[0m
+Redirected to http://localhost:3000/locations/1
+Completed 302 Found in 595ms
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2015-07-27 00:49:34 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6139391 AND longitude >= 77.2090212) THEN 45.0 WHEN (latitude < 28.6139391 AND longitude >= 77.2090212) THEN 135.0 WHEN (latitude < 28.6139391 AND longitude < 77.2090212) THEN 225.0 WHEN (latitude >= 28.6139391 AND longitude < 77.2090212) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.46920731688915 AND 28.75867088311085 AND longitude BETWEEN 77.04415355273403 AND 77.37388884726596 AND locations.id != 1) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475)[0m
+Rendered locations/show.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 55ms (Views: 43.0ms | ActiveRecord: 86.7ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:49:46 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.5ms)
+Rendered locations/new.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 50ms (Views: 17.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:49:49 +0530
+  Processing by LocationsController#index as HTML
+  [1m[35mLocation Load (0.4ms)[0m  SELECT "locations".* FROM "locations"
+Rendered locations/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 27ms (Views: 17.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2015-07-27 00:49:52 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1[0m
+  [1m[35mLocation Load (0.5ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6139391 AND longitude >= 77.2090212) THEN 45.0 WHEN (latitude < 28.6139391 AND longitude >= 77.2090212) THEN 135.0 WHEN (latitude < 28.6139391 AND longitude < 77.2090212) THEN 225.0 WHEN (latitude >= 28.6139391 AND longitude < 77.2090212) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.46920731688915 AND 28.75867088311085 AND longitude BETWEEN 77.04415355273403 AND 77.37388884726596 AND locations.id != 1) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475)
+Rendered locations/show.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 33ms (Views: 21.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:49:57 +0530
+  Processing by LocationsController#index as HTML
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT "locations".* FROM "locations"[0m
+Rendered locations/index.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 45ms (Views: 35.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=gandi+nagar+%2C+gujrat" for 127.0.0.1 at 2015-07-27 00:50:12 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"gandi nagar , gujrat"}
+  [1m[35mLocation Load (0.4ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 20.8134826) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 72.95879029999999) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 20.8134826 AND longitude >= 72.95879029999999) THEN 45.0 WHEN (latitude < 20.8134826 AND longitude >= 72.95879029999999) THEN 135.0 WHEN (latitude < 20.8134826 AND longitude < 72.95879029999999) THEN 225.0 WHEN (latitude >= 20.8134826 AND longitude < 72.95879029999999) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 20.08982368444576 AND 21.53714151555424 AND longitude BETWEEN 72.18460999438251 AND 73.73297060561747) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 20.8134826) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 72.95879029999999) * 0.7071067811865475)
+Rendered locations/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 345ms (Views: 9.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:50:16 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.5ms)
+Rendered locations/new.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 29ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:50:26 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"patna bihar", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('patna bihar', 25.611, 85.144, '2015-07-26 19:20:26.982833', '2015-07-26 19:20:26.982833')[0m
+Redirected to http://localhost:3000/locations/2
+Completed 302 Found in 553ms
+
+
+Started GET "/locations/2" for 127.0.0.1 at 2015-07-27 00:50:27 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = 2 LIMIT 1
+  [1m[36mLocation Load (0.4ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 25.611) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 85.144) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 25.611 AND longitude >= 85.144) THEN 45.0 WHEN (latitude < 25.611 AND longitude >= 85.144) THEN 135.0 WHEN (latitude < 25.611 AND longitude < 85.144) THEN 225.0 WHEN (latitude >= 25.611 AND longitude < 85.144) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 25.46626821688915 AND 25.75573178311085 AND longitude BETWEEN 84.98349891379051 AND 85.3045010862095 AND locations.id != 2) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 25.611) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 85.144) * 0.7071067811865475)[0m
+Rendered locations/show.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 29ms (Views: 17.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:50:41 +0530
+  Processing by LocationsController#index as HTML
+  [1m[35mLocation Load (0.5ms)[0m  SELECT "locations".* FROM "locations"
+Rendered locations/index.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 26ms (Views: 17.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:50:49 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.2ms)
+Rendered locations/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 49ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:51:04 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"katwariya sarai, new delhi", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('katwariya sarai, new delhi', 28.5411219, 77.1894934, '2015-07-26 19:21:05.295339', '2015-07-26 19:21:05.295339')[0m
+Redirected to http://localhost:3000/locations/3
+Completed 302 Found in 704ms
+
+
+Started GET "/locations/3" for 127.0.0.1 at 2015-07-27 00:51:05 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = 3 LIMIT 1
+  [1m[36mLocation Load (0.4ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 28.5411219) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.1894934) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.5411219 AND longitude >= 77.1894934) THEN 45.0 WHEN (latitude < 28.5411219 AND longitude >= 77.1894934) THEN 135.0 WHEN (latitude < 28.5411219 AND longitude < 77.1894934) THEN 225.0 WHEN (latitude >= 28.5411219 AND longitude < 77.1894934) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.39639011688915 AND 28.68585368311085 AND longitude BETWEEN 77.02473984629782 AND 77.35424695370219 AND locations.id != 3) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.5411219) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.1894934) * 0.7071067811865475)[0m
+Rendered locations/show.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 29ms (Views: 16.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:51:10 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.2ms)
+Rendered locations/new.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 28ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:51:29 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"hauz khas, new delhi", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[35mAREL (1.1ms)[0m  INSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('hauz khas, new delhi', 28.5494489, 77.2001368, '2015-07-26 19:21:30.300017', '2015-07-26 19:21:30.300017')
+Redirected to http://localhost:3000/locations/4
+Completed 302 Found in 578ms
+
+
+Started GET "/locations/4" for 127.0.0.1 at 2015-07-27 00:51:30 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 4 LIMIT 1[0m
+  [1m[35mLocation Load (0.4ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 28.5494489) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2001368) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.5494489 AND longitude >= 77.2001368) THEN 45.0 WHEN (latitude < 28.5494489 AND longitude >= 77.2001368) THEN 135.0 WHEN (latitude < 28.5494489 AND longitude < 77.2001368) THEN 225.0 WHEN (latitude >= 28.5494489 AND longitude < 77.2001368) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.404717116889152 AND 28.69418068311085 AND longitude BETWEEN 77.03537022061664 AND 77.36490337938335 AND locations.id != 4) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.5494489) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2001368) * 0.7071067811865475)
+Rendered locations/show.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 30ms (Views: 17.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/locations/4/edit" for 127.0.0.1 at 2015-07-27 00:51:38 +0530
+  Processing by LocationsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 4 LIMIT 1[0m
+Rendered locations/_form.html.erb (17.4ms)
+Rendered locations/edit.html.erb within layouts/application (24.9ms)
+Completed 200 OK in 132ms (Views: 100.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:51:55 +0530
+  Processing by LocationsController#index as HTML
+  [1m[35mLocation Load (0.5ms)[0m  SELECT "locations".* FROM "locations"
+Rendered locations/index.html.erb within layouts/application (36.4ms)
+Completed 200 OK in 50ms (Views: 40.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=katwariya" for 127.0.0.1 at 2015-07-27 00:52:02 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"katwariya"}
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 24.4738176) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 80.4048306) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 24.4738176 AND longitude >= 80.4048306) THEN 45.0 WHEN (latitude < 24.4738176 AND longitude >= 80.4048306) THEN 135.0 WHEN (latitude < 24.4738176 AND longitude < 80.4048306) THEN 225.0 WHEN (latitude >= 24.4738176 AND longitude < 80.4048306) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 23.75015868444576 AND 25.19747651555424 AND longitude BETWEEN 79.60973267482832 AND 81.19992852517167) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 24.4738176) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 80.4048306) * 0.7071067811865475)[0m
+Rendered locations/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 363ms (Views: 7.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:52:06 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (8.9ms)
+Rendered locations/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 28ms (Views: 16.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:52:18 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"katwariya sarai, new delhi", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('katwariya sarai, new delhi', 28.5411219, 77.1894934, '2015-07-26 19:22:19.308984', '2015-07-26 19:22:19.308984')
+Redirected to http://localhost:3000/locations/5
+Completed 302 Found in 454ms
+
+
+Started GET "/locations/5" for 127.0.0.1 at 2015-07-27 00:52:19 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 5 LIMIT 1[0m
+  [1m[35mLocation Load (0.5ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 28.5411219) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.1894934) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.5411219 AND longitude >= 77.1894934) THEN 45.0 WHEN (latitude < 28.5411219 AND longitude >= 77.1894934) THEN 135.0 WHEN (latitude < 28.5411219 AND longitude < 77.1894934) THEN 225.0 WHEN (latitude >= 28.5411219 AND longitude < 77.1894934) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.39639011688915 AND 28.68585368311085 AND longitude BETWEEN 77.02473984629782 AND 77.35424695370219 AND locations.id != 5) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.5411219) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.1894934) * 0.7071067811865475)
+Rendered locations/show.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 29ms (Views: 17.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:54:33 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.7ms)
+Rendered locations/new.html.erb within layouts/application (14.7ms)
+Completed 200 OK in 29ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:54:37 +0530
+  Processing by LocationsController#index as HTML
+  [1m[36mLocation Load (0.8ms)[0m  [1mSELECT "locations".* FROM "locations"[0m
+Rendered locations/index.html.erb within layouts/application (40.7ms)
+Completed 200 OK in 56ms (Views: 44.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:55:17 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.7ms)
+Rendered locations/new.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 29ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:55:19 +0530
+  Processing by LocationsController#index as HTML
+  [1m[35mLocation Load (0.5ms)[0m  SELECT "locations".* FROM "locations"
+Rendered locations/index.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 29ms (Views: 19.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=iit+delhi" for 127.0.0.1 at 2015-07-27 00:55:30 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"iit delhi"}
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 28.5429593) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2006837) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.5429593 AND longitude >= 77.2006837) THEN 45.0 WHEN (latitude < 28.5429593 AND longitude >= 77.2006837) THEN 135.0 WHEN (latitude < 28.5429593 AND longitude < 77.2006837) THEN 225.0 WHEN (latitude >= 28.5429593 AND longitude < 77.2006837) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 27.81930038444576 AND 29.26661821555424 AND longitude BETWEEN 76.37690156291669 AND 78.02446583708331) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.5429593) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2006837) * 0.7071067811865475)[0m
+Rendered locations/index.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 671ms (Views: 17.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:56:16 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (8.8ms)
+Rendered locations/new.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 26ms (Views: 16.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:56:27 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"patna bihar", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[35mAREL (0.3ms)[0m  INSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('patna bihar', 25.611, 85.144, '2015-07-26 19:26:27.821421', '2015-07-26 19:26:27.821421')
+Redirected to http://localhost:3000/locations/6
+Completed 302 Found in 417ms
+
+
+Started GET "/locations/6" for 127.0.0.1 at 2015-07-27 00:56:28 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 6 LIMIT 1[0m
+  [1m[35mLocation Load (0.4ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 25.611) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 85.144) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 25.611 AND longitude >= 85.144) THEN 45.0 WHEN (latitude < 25.611 AND longitude >= 85.144) THEN 135.0 WHEN (latitude < 25.611 AND longitude < 85.144) THEN 225.0 WHEN (latitude >= 25.611 AND longitude < 85.144) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 25.46626821688915 AND 25.75573178311085 AND longitude BETWEEN 84.98349891379051 AND 85.3045010862095 AND locations.id != 6) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 25.611) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 85.144) * 0.7071067811865475)
+Rendered locations/show.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 49ms (Views: 16.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:56:35 +0530
+  Processing by LocationsController#index as HTML
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT "locations".* FROM "locations"[0m
+Rendered locations/index.html.erb within layouts/application (38.7ms)
+Completed 200 OK in 52ms (Views: 42.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=gandi+nagar+%2C+gujrat" for 127.0.0.1 at 2015-07-27 00:57:18 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"gandi nagar , gujrat"}
+  [1m[35mLocation Load (0.5ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 20.8134826) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 72.95879029999999) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 20.8134826 AND longitude >= 72.95879029999999) THEN 45.0 WHEN (latitude < 20.8134826 AND longitude >= 72.95879029999999) THEN 135.0 WHEN (latitude < 20.8134826 AND longitude < 72.95879029999999) THEN 225.0 WHEN (latitude >= 20.8134826 AND longitude < 72.95879029999999) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 20.08982368444576 AND 21.53714151555424 AND longitude BETWEEN 72.18460999438251 AND 73.73297060561747) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 20.8134826) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 72.95879029999999) * 0.7071067811865475)
+Rendered locations/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 231ms (Views: 12.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2015-07-27 00:57:28 +0530
+  Processing by LocationsController#new as HTML
+Rendered locations/_form.html.erb (9.3ms)
+Rendered locations/new.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 28ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2015-07-27 00:57:32 +0530
+  Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JNaLfsBJZa3FHTVUPaTxRfizBJZUpxzpJWGrRSx42vY=", "location"=>{"address"=>"gandi nagar , gujrat", "latitude"=>"", "longitude"=>""}, "commit"=>"Create Location"}
+  [1m[36mAREL (0.3ms)[0m  [1mINSERT INTO "locations" ("address", "latitude", "longitude", "created_at", "updated_at") VALUES ('gandi nagar , gujrat', 20.8134826, 72.95879029999999, '2015-07-26 19:27:32.577348', '2015-07-26 19:27:32.577348')[0m
+Redirected to http://localhost:3000/locations/7
+Completed 302 Found in 506ms
+
+
+Started GET "/locations/7" for 127.0.0.1 at 2015-07-27 00:57:32 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = 7 LIMIT 1
+  [1m[36mLocation Load (0.4ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 20.8134826) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 72.95879029999999) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 20.8134826 AND longitude >= 72.95879029999999) THEN 45.0 WHEN (latitude < 20.8134826 AND longitude >= 72.95879029999999) THEN 135.0 WHEN (latitude < 20.8134826 AND longitude < 72.95879029999999) THEN 225.0 WHEN (latitude >= 20.8134826 AND longitude < 72.95879029999999) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 20.66875081688915 AND 20.95821438311085 AND longitude BETWEEN 72.8039542388765 AND 73.11362636112348 AND locations.id != 7) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 20.8134826) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 72.95879029999999) * 0.7071067811865475)[0m
+Rendered locations/show.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 29ms (Views: 16.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2015-07-27 00:57:37 +0530
+  Processing by LocationsController#index as HTML
+  [1m[35mLocation Load (0.5ms)[0m  SELECT "locations".* FROM "locations"
+Rendered locations/index.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 32ms (Views: 22.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=giridih+" for 127.0.0.1 at 2015-07-27 00:57:48 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"giridih "}
+  [1m[36mLocation Load (0.4ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 24.1821391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 86.28695069999999) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 24.1821391 AND longitude >= 86.28695069999999) THEN 45.0 WHEN (latitude < 24.1821391 AND longitude >= 86.28695069999999) THEN 135.0 WHEN (latitude < 24.1821391 AND longitude < 86.28695069999999) THEN 225.0 WHEN (latitude >= 24.1821391 AND longitude < 86.28695069999999) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 23.45848018444576 AND 24.90579801555424 AND longitude BETWEEN 85.4936806370634 AND 87.08022076293658) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 24.1821391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 86.28695069999999) * 0.7071067811865475)[0m
+Rendered locations/index.html.erb within layouts/application (25.5ms)
+Completed 200 OK in 261ms (Views: 29.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=inderputi+delhi" for 127.0.0.1 at 2015-07-27 00:58:03 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"inderputi delhi"}
+  [1m[35mLocation Load (0.5ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 28.6319998) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.14509939999999) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6319998 AND longitude >= 77.14509939999999) THEN 45.0 WHEN (latitude < 28.6319998 AND longitude >= 77.14509939999999) THEN 135.0 WHEN (latitude < 28.6319998 AND longitude < 77.14509939999999) THEN 225.0 WHEN (latitude >= 28.6319998 AND longitude < 77.14509939999999) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 27.90834088444576 AND 29.355658715554238 AND longitude BETWEEN 76.32061934322391 AND 77.96957945677607) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6319998) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.14509939999999) * 0.7071067811865475)
+Rendered locations/index.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 272ms (Views: 17.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2015-07-27 00:58:22 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT "locations".* FROM "locations" WHERE "locations"."id" = 1 LIMIT 1[0m
+  [1m[35mLocation Load (0.5ms)[0m  SELECT *, (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6139391 AND longitude >= 77.2090212) THEN 45.0 WHEN (latitude < 28.6139391 AND longitude >= 77.2090212) THEN 135.0 WHEN (latitude < 28.6139391 AND longitude < 77.2090212) THEN 225.0 WHEN (latitude >= 28.6139391 AND longitude < 77.2090212) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.46920731688915 AND 28.75867088311085 AND longitude BETWEEN 77.04415355273403 AND 77.37388884726596 AND locations.id != 1) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6139391) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2090212) * 0.7071067811865475)
+Rendered locations/show.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 31ms (Views: 19.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/locations?utf8=%E2%9C%93&search=inderputi+delhi" for 127.0.0.1 at 2015-07-27 00:58:26 +0530
+  Processing by LocationsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"inderputi delhi"}
+  [1m[36mLocation Load (0.7ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 28.6319998) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.14509939999999) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.6319998 AND longitude >= 77.14509939999999) THEN 45.0 WHEN (latitude < 28.6319998 AND longitude >= 77.14509939999999) THEN 135.0 WHEN (latitude < 28.6319998 AND longitude < 77.14509939999999) THEN 225.0 WHEN (latitude >= 28.6319998 AND longitude < 77.14509939999999) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 27.90834088444576 AND 29.355658715554238 AND longitude BETWEEN 76.32061934322391 AND 77.96957945677607) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.6319998) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.14509939999999) * 0.7071067811865475)[0m
+Rendered locations/index.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 361ms (Views: 18.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/locations/4" for 127.0.0.1 at 2015-07-27 00:58:29 +0530
+  Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mLocation Load (0.2ms)[0m  SELECT "locations".* FROM "locations" WHERE "locations"."id" = 4 LIMIT 1
+  [1m[36mLocation Load (0.7ms)[0m  [1mSELECT *, (69.09332411348201 * ABS(latitude - 28.5494489) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2001368) * 0.7071067811865475) AS distance, CASE WHEN (latitude >= 28.5494489 AND longitude >= 77.2001368) THEN 45.0 WHEN (latitude < 28.5494489 AND longitude >= 77.2001368) THEN 135.0 WHEN (latitude < 28.5494489 AND longitude < 77.2001368) THEN 225.0 WHEN (latitude >= 28.5494489 AND longitude < 77.2001368) THEN 315.0 END AS bearing FROM "locations" WHERE (latitude BETWEEN 28.404717116889152 AND 28.69418068311085 AND longitude BETWEEN 77.03537022061664 AND 77.36490337938335 AND locations.id != 4) GROUP BY locations.id,locations.address,locations.latitude,locations.longitude,locations.created_at,locations.updated_at ORDER BY (69.09332411348201 * ABS(latitude - 28.5494489) * 0.7071067811865475) + (59.836573914187355 * ABS(longitude - 77.2001368) * 0.7071067811865475)[0m
+Rendered locations/show.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 33ms (Views: 21.0ms | ActiveRecord: 0.8ms)
